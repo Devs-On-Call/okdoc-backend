@@ -1,12 +1,11 @@
 require('dotenv').config()
 import express from "express";
 import log from "./logger";
-import connect from "./db/connect";
 import routes from "./routes";
+import connect from "./db/connect";
 // import { deserializeUser } from "./middleware";
 
-const port = parseInt(process.env.PORT || "") as number;
-const host = process.env.HOST as string;
+const port = parseInt(process.env.PORT || "") || 3000 as number;
 
 const app = express();
 // app.use(deserializeUser);
@@ -14,8 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(port, host, () => {
-    log.info(`Server listing at http://${host}:${port}`);
+app.listen(port, () => {
+    log.info(`Server listening at port ${port}`);
 
     connect();
 
