@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/da64eedb7063496d7b74/maintainability)](https://codeclimate.com/github/Devs-On-Call/okdoc-backend/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/da64eedb7063496d7b74/test_coverage)](https://codeclimate.com/github/Devs-On-Call/okdoc-backend/test_coverage)
 
-Health Android app that lets you check your prescriptions, diagnoses, appointments & make new appointments.
+Android app that lets you check your prescriptions, diagnoses, appointments & make new appointments.
 
 ## Installation
 
