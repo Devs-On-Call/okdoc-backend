@@ -1,6 +1,8 @@
 import { Express, Request, Response } from "express";
+import { getPatientHandler } from "./controller/patient.controller";
 import { createTokenHandler } from "./controller/token.controller";
 import validateRequest from "./middleware/validateRequest";
+import validateToken from "./middleware/validateToken";
 import { createTokenSchema } from "./validation/token.schema";
 
 export default function (app: Express) {
@@ -8,4 +10,7 @@ export default function (app: Express) {
 
     // Login
     app.post("/api/tokens", validateRequest(createTokenSchema), createTokenHandler);
+
+    // Profile
+    app.get("/api/patients/:patientId", validateToken, getPatientHandler);
 }
