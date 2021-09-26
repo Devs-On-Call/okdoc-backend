@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { patientExists } from "../service/token.service";
+import { patientExists } from "../service/patient.service";
 import jwt from "jsonwebtoken";
 
 export async function createTokenHandler(req: Request, res: Response) {
