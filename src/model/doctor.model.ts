@@ -1,10 +1,10 @@
 import mongoose, { ObjectId } from "mongoose";
 
 export interface DoctorDocument extends mongoose.Document {
-    name: String,
-    lastName: String,
-    profession: String,
-};
+    name: string,
+    lastName: string,
+    profession: string,
+}
 
 const DoctorSchema = new mongoose.Schema(
     {

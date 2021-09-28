@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { get } from "lodash";
 import mongoose from "mongoose";
-import { findPatient } from "../service/patient.service";
+import { findPatientAppointments } from "../service/appointment.service";
 
 
-export async function getPatientHandler(req: Request, res: Response) {
+export async function getPatientAppointmentsHandler(req: Request, res: Response) {
     const patientId = get(req, "params.patientId");
 
     if (!mongoose.Types.ObjectId.isValid(patientId)) {
@@ -14,18 +14,18 @@ export async function getPatientHandler(req: Request, res: Response) {
         });
     }
 
-    const patient = await findPatient(patientId);
+    const appointments = await findPatientAppointments(patientId);
 
-    if (!patient) {
+    if (!appointments) {
         return res.send({
             success: false,
-            message: "Patient not found",
+            message: "Something went wrong",
         });
     }
 
     return res.send({
         success: true,
         message: "Success",
-        data: patient
+        data: { appointments },
     });
 }
