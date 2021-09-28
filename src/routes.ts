@@ -1,4 +1,5 @@
 import { Express, Request, Response } from "express";
+import { getPatientAppointmentsHandler } from "./controller/appointment.controller";
 import { getPatientHandler } from "./controller/patient.controller";
 import { createTokenHandler } from "./controller/token.controller";
 import validateRequest from "./middleware/validateRequest";
@@ -16,7 +17,7 @@ export default function (app: Express) {
     // Profile
     app.get("/api/patients/:patientId", validateToken, getPatientHandler);
 
-    //diagnoses
+    // Diagnoses
     app.get("/api/patients/:patientId/diagnoses", validateToken, getPatientDiagnosesHandler);
    
 }
