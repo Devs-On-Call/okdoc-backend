@@ -5,7 +5,9 @@ import { createTokenHandler } from "./controller/token.controller";
 import validateRequest from "./middleware/validateRequest";
 import validateToken from "./middleware/validateToken";
 import { createTokenSchema } from "./validation/token.schema";
-import { getPrescriptionHandler } from "./controller/prescription.controller";
+import { getPatientPrescriptionHandler} from "./controller/prescription.controller";
+import { getPatientDiagnosesHandler} from "./controller/diagnoses.controller";
+
 
 export default function (app: Express) {
     app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
@@ -20,8 +22,9 @@ export default function (app: Express) {
     app.get("/api/patients/:patientId/appointments", validateToken, getPatientAppointmentsHandler);
 
     // Prescriptions
-    app.get("/api/patients/:patientId/prescriptions", validateToken, getPrescriptionHandler);
+    app.get("/api/patients/:patientId/prescriptions", validateToken, getPatientPrescriptionHandler);
 
     // Diagnoses
-    // app.get("/api/patients/:patientId/diagnoses", validateToken, getPatientDiagnosesHandler);
+    app.get("/api/patients/:patientId/diagnoses", validateToken, getPatientDiagnosesHandler);
+   
 }

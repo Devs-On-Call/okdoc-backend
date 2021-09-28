@@ -3,9 +3,9 @@ import mongoose, { ObjectId } from "mongoose";
 export interface PrescriptionDocument extends mongoose.Document {
     date: Date,
     diagnosis: ObjectId,
-    drug: String,
-    dosage: String,
-    duration: Number,
+    drug: string,
+    dosage: string,
+    duration: number,
     patient: ObjectId,
     doctor: ObjectId
 }

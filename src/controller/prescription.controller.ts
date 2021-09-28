@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { findPrescriptions } from "../service/prescription.service";
 
 
-export async function getPrescriptionHandler(req: Request, res: Response) {
+export async function getPatientPrescriptionHandler(req: Request, res: Response) {
     const patientId = get(req, "params.patientId");
 
     if (!mongoose.Types.ObjectId.isValid(patientId)) {
@@ -27,5 +27,5 @@ export async function getPrescriptionHandler(req: Request, res: Response) {
         success: true,
         message: "Success",
         data: prescriptions
-    })
+    });
 }
