@@ -19,7 +19,5 @@ export async function createTokenHandler(req: Request, res: Response) {
     return res.header("Authorization", accessToken).send({
         success: true,
         message: "Login succesful"
-    })
-
-
+    });
 }

@@ -1,13 +1,12 @@
 import mongoose, { ObjectId } from "mongoose";
 
 export interface PatientDocument extends mongoose.Document {
-    amka: String,
-    name: String,
-    lastName: String,
-    bloodType: String,
+    amka: string,
+    name: string,
+    lastName: string,
+    bloodType: string,
     familyDoctor: ObjectId
 }
-
 
 const PatientSchema = new mongoose.Schema(
     {
