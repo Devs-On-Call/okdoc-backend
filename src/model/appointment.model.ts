@@ -2,12 +2,11 @@ import mongoose, { ObjectId } from "mongoose";
 
 export interface AppointmentDocument extends mongoose.Document {
     date: Date,
-    reason: String,
+    reason: string,
     patient: ObjectId,
     doctor: ObjectId,
     hospital: ObjectId,
 }
-
 
 const AppointmentSchema = new mongoose.Schema(
     {

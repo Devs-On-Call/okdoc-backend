@@ -26,8 +26,6 @@ export async function getPatientAppointmentsHandler(req: Request, res: Response)
     return res.send({
         success: true,
         message: "Success",
-        data: {
-            appointments: appointments
-        }
-    })
+        data: { appointments },
+    });
 }

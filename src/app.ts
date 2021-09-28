@@ -1,10 +1,11 @@
-require('dotenv').config()
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import log from "./logger";
 import routes from "./routes";
 import connect from "./db/connect";
 
-const port = parseInt(process.env.PORT || "") || 3000 as number;
+const port = parseInt(process.env.PORT || "", 10) || 3000 as number;
 
 const app = express();
 

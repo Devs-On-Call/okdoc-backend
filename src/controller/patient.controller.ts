@@ -27,5 +27,5 @@ export async function getPatientHandler(req: Request, res: Response) {
         success: true,
         message: "Success",
         data: patient
-    })
+    });
 }

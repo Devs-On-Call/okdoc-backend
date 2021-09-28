@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 
 export interface HospitalDocument extends mongoose.Document {
-    name: String,
-    address: String,
-    phoneNumber: String,
+    name: string,
+    address: string,
+    phoneNumber: string,
 }
-
 
 const HospitalSchema = new mongoose.Schema(
     {
