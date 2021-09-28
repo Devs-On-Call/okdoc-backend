@@ -3,7 +3,7 @@ import mongoose, { ObjectId } from "mongoose";
 export interface DiagnosisDocument extends mongoose.Document {
 
     date: Date,
-    diagnosis: String,
+    diagnosis: string,
     patient: ObjectId,
     doctor: ObjectId,
 }
