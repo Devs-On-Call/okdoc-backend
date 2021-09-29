@@ -13,13 +13,13 @@ export interface PrescriptionDocument extends mongoose.Document {
 
 const PrescriptionSchema = new mongoose.Schema(
     {
-        doctor: {type:mongoose.Schema.Types.ObjectId, ref: "Doctor", required: true},
-        date: { type: Date, required: true},
-        diagnosis: { type: mongoose.Schema.Types.ObjectId, ref: "Diagnosis", required: true},
-        drug: {type:String, required: true},
+        doctor: { type: mongoose.Schema.Types.ObjectId, ref: "Doctor", required: true },
+        date: { type: Date, required: true },
+        diagnosis: { type: mongoose.Schema.Types.ObjectId, ref: "Diagnosis", required: true },
+        drug: { type: String, required: true },
         dosage: { type: String, required: true },
-        duration: { type: Number, required: true},
-        patient: {type:mongoose.Schema.Types.ObjectId, ref: "Patient", required: true}
+        duration: { type: Number, required: true },
+        patient: { type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true }
     }
 );
 

@@ -20,9 +20,21 @@ const validateToken = async (
     });
 
     try {
-        const decoded = jwt.verify(accessToken, privateKey);
-        // @ts-ignore
-        req.user = decoded;
+        const decoded = jwt.verify(accessToken, privateKey) as {
+            _id: string, iat: number, exp: number,
+        };
+
+        if (Date.now() >= decoded.exp * 1000) return res.status(400).send({
+            success: false,
+            message: "Token has expired"
+        });
+
+        const patientId = get(req, "params.patientId");
+        if (patientId !== decoded._id) return res.status(400).send({
+            success: false,
+            message: "PatientId and token don't match"
+        });
+
         next();
     } catch (error) {
         res.status(400).send({
