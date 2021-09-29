@@ -1,7 +1,6 @@
 import Doctor from "../model/doctor.model";
 import Patient, { PatientDocument } from "../model/patient.model";
 
-
 export async function findPatient(id: string) {
     try {
         const patient = await Patient.findById(id).populate({ path: "familyDoctor", model: Doctor });
