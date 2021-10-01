@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(port, () => {
+export default app.listen(port, () => {
     log.info(`Server listening at port ${port}`);
 
     connect();

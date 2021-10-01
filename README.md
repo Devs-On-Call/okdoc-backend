@@ -14,3 +14,9 @@ Android app that lets you check your prescriptions, diagnoses, appointments & ma
 
 - Start the app: `npm start`
 - Or use `npm run dev` to run with nodemon (to refresh automatically)
+
+## Tests
+
+- Run all tests with: `npm test`
+- Generate test coverage with: `npm run coverage`
+- Run TSLint for all files: `tslint 'src/**/*.ts'`

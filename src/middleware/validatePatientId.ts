@@ -10,7 +10,7 @@ const validatePatientId = async (
     const patientId = get(req, "params.patientId");
 
     if (!mongoose.Types.ObjectId.isValid(patientId)) {
-        return res.send({
+        return res.status(400).send({
             success: false,
             message: "Give a valid patientId",
         });
