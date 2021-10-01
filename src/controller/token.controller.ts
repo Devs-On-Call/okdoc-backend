@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { patientExists } from "../service/patient.service";
-import jwt from "jsonwebtoken";
+import { createToken } from "../utils/jwt.utils";
 
 export async function createTokenHandler(req: Request, res: Response) {
     const patient = await patientExists(req.body.amka);
@@ -12,12 +12,10 @@ export async function createTokenHandler(req: Request, res: Response) {
         });
     }
 
-    const accessToken = jwt.sign({ _id: patient._id }, process.env.TOKKEN_SECRET as string, {
-        expiresIn: "1h"
-    });
+    const accessToken = createToken(patient._id, "1h");
 
     return res.header("Authorization", accessToken).send({
         success: true,
-        message: "Login succesful"
+        message: "Login successful"
     });
 }
