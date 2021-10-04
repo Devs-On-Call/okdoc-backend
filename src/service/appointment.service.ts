@@ -5,6 +5,7 @@ import Hospital from "../model/hospital.model";
 export async function findPatientAppointments(id: string) {
     try {
         const patient = await Appointment.find({ patient: id }, 'date reason doctor hospital')
+            .sort("date")
             .populate({ path: "doctor", model: Doctor })
             .populate({ path: "hospital", model: Hospital });
         return patient;
