@@ -21,7 +21,7 @@ describe("/api/patients/:patientId/prescriptions", () => {
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
-                //res.body.data.should.have.length(1);
+                // res.body.data.should.have.length(1);
                 res.body.data[0].should.have.property("diagnosis");
                 res.body.data[0].should.have.property("date");
                 res.body.data[0].should.have.property("doctor");

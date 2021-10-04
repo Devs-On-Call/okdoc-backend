@@ -13,4 +13,3 @@ export async function findPrescriptions(id: string) {
         return false;
     }
 }
-
