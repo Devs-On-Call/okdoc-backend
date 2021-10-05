@@ -7,9 +7,9 @@
     "start": "node dist/app.js",
     "build": "tsc",
     "dev": "nodemon --config nodemon.json src/app.ts",
-    "test": "mocha --exit --require ts-node/register src/__tests__/*.ts",
+    "test": "mocha --timeout 4000 --exit --require ts-node/register src/__tests__/*.ts",
     "coverage": "npm run coverage:clean && npm run coverage:test",
-    "coverage:test": "nyc mocha --exit --require ts-node/register  src/__tests__/*.ts",
+    "coverage:test": "nyc npm run test",
     "coverage:clean": "rm -rf .nyc_output && rm -rf coverage",
     "postinstall": "npm run build"
   },

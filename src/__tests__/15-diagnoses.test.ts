@@ -10,8 +10,7 @@ describe("/api/patients/:patientId/diagnoses", () => {
     const patientIdJim = "615043f6d0fb0121f3d50512";
     const token = createToken(patientIdJim);
 
-    
-    it("should return the patient's diagnoses", () => {
+    it("should return the patient's diagnoses", function (done) {
         chai.request(app)
             .get(`/api/patients/${patientIdJim}/diagnoses`)
             .set("Authorization", "Bearer " + token)
@@ -22,14 +21,12 @@ describe("/api/patients/:patientId/diagnoses", () => {
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
-                //res.body.data.should.have.length(1);
                 res.body.data[0].should.have.property("diagnosis");
                 res.body.data[0].should.have.property("date");
                 res.body.data[0].should.have.property("doctor");
-                res.body.data[0].should.have.property("patient");
                 res.body.data[0].doctor.should.have.property("lastName");
                 res.body.data[0].doctor.should.have.property("name");
+                done();
             });
     });
-
-});    
+});

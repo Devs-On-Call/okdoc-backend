@@ -16,8 +16,6 @@ export async function getPatientDiagnosesHandler(req: Request, res: Response) {
     return res.send({
         success: true,
         message: "Success",
-        data: {
-            diagnoses
-        },
+        data: diagnoses,
     });
 }

@@ -6,12 +6,12 @@ chai.use(chaiHttp);
 const should = chai.should();
 
 describe("/healthcheck", () => {
-  it("should return OK", () => {
-    chai
-      .request(app)
-      .get("/healthcheck")
-      .end((err, res) => {
-        res.should.have.status(200);
-      });
-  });
+    it("should return OK", function (done) {
+        chai.request(app)
+            .get("/healthcheck")
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+    });
 });

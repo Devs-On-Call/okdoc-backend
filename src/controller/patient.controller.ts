@@ -9,13 +9,14 @@ export async function getPatientHandler(req: Request, res: Response) {
     if (!patient) {
         return res.send({
             success: false,
-            message: "Something went wrong while searching for your information",
+            message:
+                "Something went wrong while searching for your information",
         });
     }
 
     return res.send({
         success: true,
         message: "Success",
-        data: patient
+        data: patient,
     });
 }
