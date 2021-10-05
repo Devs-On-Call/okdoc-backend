@@ -1,0 +1,38 @@
+name: Test Coverage of main branch
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  coverage-main:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    if: github.event.pull_request.merged == true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - name: Create env file
+        run: |
+          cat << EOF > .env
+          DBURI=${{ secrets.DBURI }}
+          TOKKEN_SECRET=${{ secrets.TOKKEN_SECRET }}
+          EOF
+      - name: Test coverage for main
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+          npm run coverage
+          ./cc-test-reporter after-build --debug --exit-code $?
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          GIT_BRANCH: ${{ github.base_ref }}
