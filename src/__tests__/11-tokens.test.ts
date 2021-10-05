@@ -6,12 +6,11 @@ chai.use(chaiHttp);
 const should = chai.should();
 
 describe("/api/tokens", () => {
-    it("should return a jwt in the header when given a valid and existing AMKA", () => {
-        chai
-            .request(app)
+    it("should return a jwt in the header when given a valid and existing AMKA", function (done) {
+        chai.request(app)
             .post("/api/tokens")
             .send({
-                "amka": "12345678911"
+                amka: "12345678911",
             })
             .end((err, res) => {
                 res.should.have.status(200);
@@ -20,15 +19,15 @@ describe("/api/tokens", () => {
                 res.body.success.should.equal(true);
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Login successful");
+                done();
             });
     });
 
-    it("should return error 'Must be a valid AMKA' when given a wrong AMKA", () => {
-        chai
-            .request(app)
+    it("should return error 'Must be a valid AMKA' when given a wrong AMKA", function (done) {
+        chai.request(app)
             .post("/api/tokens")
             .send({
-                "amka": "123456789111" // 12 numbers instead of 11
+                amka: "123456789111", // 12 numbers instead of 11
             })
             .end((err, res) => {
                 res.should.have.status(400);
@@ -36,12 +35,12 @@ describe("/api/tokens", () => {
                 res.body.success.should.equal(false);
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Must be a valid AMKA");
+                done();
             });
     });
 
-    it("should return error 'AMKA is required' when given no AMKA", () => {
-        chai
-            .request(app)
+    it("should return error 'AMKA is required' when given no AMKA", function (done) {
+        chai.request(app)
             .post("/api/tokens")
             .send({
                 // "amka": "12345678911"
@@ -52,6 +51,7 @@ describe("/api/tokens", () => {
                 res.body.success.should.equal(false);
                 res.body.should.have.property("message");
                 res.body.message.should.equal("AMKA is required");
+                done();
             });
     });
 });

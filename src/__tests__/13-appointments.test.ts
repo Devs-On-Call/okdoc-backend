@@ -10,9 +10,8 @@ describe("/api/patients/:patientId/appointments", () => {
     const patientIdJudith = "6151df074a29957b163f98a8";
     const token = createToken(patientIdJudith);
 
-    it("should return the patients appointments info when given a valid token", () => {
-        chai
-            .request(app)
+    it("should return the patients appointments info when given a valid token", function (done) {
+        chai.request(app)
             .get(`/api/patients/${patientIdJudith}/appointments`)
             .set("Authorization", "Bearer " + token)
             .end((err, res) => {
@@ -22,18 +21,18 @@ describe("/api/patients/:patientId/appointments", () => {
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
-                res.body.data.should.have.length(2);
                 res.body.data[0].should.have.property("reason");
                 res.body.data[0].should.have.property("date");
                 res.body.data[0].should.have.property("doctor");
                 res.body.data[0].doctor.should.have.property("name");
                 res.body.data[0].doctor.should.have.property("lastName");
                 res.body.data[0].doctor.should.have.property("profession");
+                res.body.data[0].doctor.profession.should.have.property("name");
                 res.body.data[0].should.have.property("hospital");
                 res.body.data[0].hospital.should.have.property("name");
                 res.body.data[0].hospital.should.have.property("address");
                 res.body.data[0].hospital.should.have.property("phoneNumber");
+                done();
             });
     });
-
 });
