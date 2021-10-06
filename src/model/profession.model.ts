@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export interface ProfessionDocument extends mongoose.Document {
-    profession: string;
+    name: string;
 }
 
 const ProfessionSchema = new mongoose.Schema({
