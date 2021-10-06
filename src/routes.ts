@@ -24,30 +24,30 @@ export default function (app: Express) {
     app.get(
         "/api/patients/:patientId",
         validatePatientId,
-        validateToken,
+        validateToken(true),
         getPatientHandler
     );
 
     app.get(
         "/api/patients/:patientId/appointments",
         validatePatientId,
-        validateToken,
+        validateToken(true),
         getPatientAppointmentsHandler
     );
 
     app.get(
         "/api/patients/:patientId/prescriptions",
         validatePatientId,
-        validateToken,
+        validateToken(true),
         getPatientPrescriptionsHandler
     );
 
     app.get(
         "/api/patients/:patientId/diagnoses",
         validatePatientId,
-        validateToken,
+        validateToken(true),
         getPatientDiagnosesHandler
     );
 
-    app.get("/api/professions", getProfessionsHandler);
+    app.get("/api/professions", validateToken(false), getProfessionsHandler);
 }
