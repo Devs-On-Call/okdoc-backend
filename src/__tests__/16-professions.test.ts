@@ -1,5 +1,5 @@
 import app from "../app";
-import chai from "chai";
+import chai, { expect } from "chai";
 import { createToken } from "../utils/jwt.utils";
 import chaiHttp from "chai-http";
 
@@ -21,7 +21,7 @@ describe("/api/professions", () => {
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
-                res.body.data[0].should.have.property("name");
+                res.body.data.should.be.not.empty;
                 done();
             });
     });
