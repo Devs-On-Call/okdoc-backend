@@ -9,6 +9,7 @@ import { getPatientPrescriptionsHandler } from "./controller/prescription.contro
 import { getPatientDiagnosesHandler } from "./controller/diagnoses.controller";
 import validatePatientId from "./middleware/validatePatientId";
 import { getProfessionsHandler } from "./controller/profession.controller";
+import { getDoctorsHandler } from "./controller/doctors.controller";
 
 export default function (app: Express) {
     app.get("/healthcheck", (req: Request, res: Response) =>
@@ -50,4 +51,7 @@ export default function (app: Express) {
     );
 
     app.get("/api/professions", validateToken(false), getProfessionsHandler);
+
+    
+    app.get("/api/doctors", validateToken(false), getDoctorsHandler);
 }
