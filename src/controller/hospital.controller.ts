@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import { get } from "lodash";
+import { getHospitals } from "../service/hospital.service";
 import { findPatient } from "../service/patient.service";
 
-export async function getPatientHandler(req: Request, res: Response) {
-    const patientId = get(req, "params.patientId");
-    const patient = await findPatient(patientId);
+export async function getHospitalsHandler(req: Request, res: Response) {
+    const professionId = req.query.professionId as string;
+    const hospitals = await getHospitals(professionId);
 
-    if (!patient) {
+    if (!hospitals) {
         return res.status(404).send({
             success: false,
             message:
@@ -17,6 +18,6 @@ export async function getPatientHandler(req: Request, res: Response) {
     return res.send({
         success: true,
         message: "Success",
-        data: patient,
+        data: hospitals,
     });
 }

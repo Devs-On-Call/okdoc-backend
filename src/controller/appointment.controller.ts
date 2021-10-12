@@ -10,7 +10,7 @@ export async function getPatientAppointmentsHandler(
     const appointments = await findPatientAppointments(patientId);
 
     if (!appointments) {
-        return res.send({
+        return res.status(404).send({
             success: false,
             message:
                 "Something went wrong while searching for your appointments",

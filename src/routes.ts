@@ -2,14 +2,15 @@ import { Express, Request, Response } from "express";
 import { getPatientAppointmentsHandler } from "./controller/appointment.controller";
 import { getPatientHandler } from "./controller/patient.controller";
 import { createTokenHandler } from "./controller/token.controller";
-import validateRequest from "./middleware/validateRequest";
-import validateToken from "./middleware/validateToken";
-import { createTokenSchema } from "./validation/token.schema";
 import { getPatientPrescriptionsHandler } from "./controller/prescription.controller";
 import { getPatientDiagnosesHandler } from "./controller/diagnoses.controller";
-import validatePatientId from "./middleware/validatePatientId";
 import { getProfessionsHandler } from "./controller/profession.controller";
+import { getHospitalsHandler } from "./controller/hospital.controller";
 import { getDoctorsHandler } from "./controller/doctors.controller";
+import validateRequest from "./middleware/validateRequest";
+import validateToken from "./middleware/validateToken";
+import validatePatientId from "./middleware/validatePatientId";
+import { createTokenSchema } from "./validation/token.schema";
 
 export default function (app: Express) {
     app.get("/healthcheck", (req: Request, res: Response) =>
@@ -52,6 +53,7 @@ export default function (app: Express) {
 
     app.get("/api/professions", validateToken(false), getProfessionsHandler);
 
-    
+    app.get("/api/hospitals", validateToken(false), getHospitalsHandler);
+
     app.get("/api/doctors", validateToken(false), getDoctorsHandler);
 }
