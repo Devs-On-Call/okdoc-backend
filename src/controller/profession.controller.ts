@@ -3,8 +3,9 @@ import { getProfessions } from "../service/profession.service";
 
 export async function getProfessionsHandler(req: Request, res: Response) {
     const professions = await getProfessions();
+
     if (!professions) {
-        res.send({
+        return res.status(404).send({
             success: false,
             message: "There was a problem with getting professions",
         });

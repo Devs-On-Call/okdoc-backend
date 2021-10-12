@@ -7,7 +7,7 @@ export async function getPatientPrescriptionsHandler(req: Request, res: Response
     const prescriptions = await findPrescriptions(patientId);
 
     if (!prescriptions) {
-        return res.send({
+        return res.status(404).send({
             success: false,
             message: "Something went wrong while searching for your prescriptions",
         });

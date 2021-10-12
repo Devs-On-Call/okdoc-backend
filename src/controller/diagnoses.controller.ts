@@ -7,7 +7,7 @@ export async function getPatientDiagnosesHandler(req: Request, res: Response) {
     const diagnoses = await findPatientDiagnoses(patientId);
 
     if (!diagnoses) {
-        return res.send({
+        return res.status(404).send({
             success: false,
             message: "Something went wrong while searching for your diagnoses",
         });
