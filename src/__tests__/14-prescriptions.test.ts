@@ -15,15 +15,12 @@ describe("/api/patients/:patientId/prescriptions", () => {
             .get(`/api/patients/${patientIdJim}/prescriptions`)
             .set("Authorization", "Bearer " + token)
             .end((err, res) => {
-                //console.log(res);
                 res.should.have.status(200);
                 res.body.should.have.property("success");
                 res.body.success.should.equal(true);
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
-                //console.log(res.body);
-                //console.log(res.body.data[0].doctor);
                 res.body.data[0].should.have.property("diagnosis");
                 res.body.data[0].should.have.property("date");
                 res.body.data[0].should.have.property("doctor");
@@ -31,6 +28,7 @@ describe("/api/patients/:patientId/prescriptions", () => {
                 res.body.data[0].should.have.property("drug");
                 res.body.data[0].should.have.property("duration");
                 res.body.data[0].doctor.should.have.property("profession");
+                res.body.data[0].doctor.profession.should.have.property("name")
                 res.body.data[0].doctor.should.have.property("lastName");
                 res.body.data[0].doctor.should.have.property("name");
                 done();

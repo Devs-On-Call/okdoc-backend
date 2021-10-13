@@ -24,6 +24,8 @@ describe("/api/patients/:patientId/diagnoses", () => {
                 res.body.data[0].should.have.property("diagnosis");
                 res.body.data[0].should.have.property("date");
                 res.body.data[0].should.have.property("doctor");
+                res.body.data[0].doctor.should.have.property("profession");
+                res.body.data[0].doctor.profession.should.have.property("name")
                 res.body.data[0].doctor.should.have.property("lastName");
                 res.body.data[0].doctor.should.have.property("name");
                 done();
