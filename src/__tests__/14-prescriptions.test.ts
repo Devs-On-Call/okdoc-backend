@@ -23,12 +23,14 @@ describe("/api/patients/:patientId/prescriptions", () => {
                 res.body.should.have.property("data");
                 res.body.data[0].should.have.property("diagnosis");
                 res.body.data[0].should.have.property("date");
-                res.body.data[0].should.have.property("doctor");
                 res.body.data[0].should.have.property("dosage");
                 res.body.data[0].should.have.property("drug");
                 res.body.data[0].should.have.property("duration");
+                res.body.data[0].should.have.property("doctor");
                 res.body.data[0].doctor.should.have.property("profession");
                 res.body.data[0].doctor.profession.should.have.property("name")
+                res.body.data[0].doctor.should.have.property("hospital");
+                res.body.data[0].doctor.hospital.should.have.property("name")
                 res.body.data[0].doctor.should.have.property("lastName");
                 res.body.data[0].doctor.should.have.property("name");
                 done();
