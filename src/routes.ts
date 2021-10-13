@@ -11,6 +11,7 @@ import validateRequest from "./middleware/validateRequest";
 import validateToken from "./middleware/validateToken";
 import validatePatientId from "./middleware/validatePatientId";
 import { createTokenSchema } from "./validation/token.schema";
+import { getBookedHandler } from "./controller/booked.controller";
 
 export default function (app: Express) {
     app.get("/healthcheck", (req: Request, res: Response) =>
@@ -56,4 +57,6 @@ export default function (app: Express) {
     app.get("/api/hospitals", validateToken(false), getHospitalsHandler);
 
     app.get("/api/doctors", validateToken(false), getDoctorsHandler);
+
+    app.get("/api/appointments", validateToken(false), getBookedHandler);
 }

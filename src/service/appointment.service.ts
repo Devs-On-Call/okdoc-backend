@@ -14,6 +14,10 @@ export async function findPatientAppointments(id: string) {
                 path: "doctor",
                 model: Doctor,
                 populate: { path: "profession", model: Profession },
+            }).populate({
+                path: "doctor",
+                model: Doctor,
+                populate: { path: "hospital", model: Hospital },
             })
             .populate({ path: "hospital", model: Hospital });
         return patient;
