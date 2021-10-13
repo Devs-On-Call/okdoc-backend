@@ -31,6 +31,9 @@ describe("/api/patients/:patientId", () => {
                 res.body.data.familyDoctor.should.have.property("name");
                 res.body.data.familyDoctor.should.have.property("lastName");
                 res.body.data.familyDoctor.should.have.property("profession");
+                res.body.data.familyDoctor.profession.should.have.property("name");
+                res.body.data.familyDoctor.should.have.property("hospital");
+                res.body.data.familyDoctor.hospital.should.have.property("name");
                 done();
             });
     });
