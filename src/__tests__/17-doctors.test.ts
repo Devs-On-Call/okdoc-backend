@@ -13,11 +13,11 @@ describe("/api/doctors", () => {
     const professionId = "615c425614da612a4f026f6a";
     const hospitalId = "6151ddb64a29957b163f98a5";
 
-
-
     it("should return the doctors for specific profession and hospital", function (done) {
         chai.request(app)
-            .get(`/api/doctors?professionId=${professionId}&hospitalId=${hospitalId}`)
+            .get(
+                `/api/doctors?professionId=${professionId}&hospitalId=${hospitalId}`
+            )
             .set("Authorization", "Bearer " + token)
             .end((err, res) => {
                 res.should.have.status(200);
@@ -26,6 +26,9 @@ describe("/api/doctors", () => {
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
+                res.body.data[0].should.have.property("name");
+                res.body.data[0].should.have.property("lastName");
+                res.body.data[0].should.have.property("profession");
                 done();
             });
     });

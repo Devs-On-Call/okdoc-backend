@@ -23,6 +23,9 @@ describe("/api/hospitals", () => {
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
+                res.body.data[0].should.have.property("name");
+                res.body.data[0].should.have.property("address");
+                res.body.data[0].should.have.property("email");
                 done();
             });
     });
