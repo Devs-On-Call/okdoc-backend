@@ -15,3 +15,13 @@ export async function getHospitals(professionId: string) {
         return false;
     }
 }
+
+export async function hospitalExists(hospitalId: string) {
+    try {
+        const hospital = await Hospital.find({ _id: hospitalId }, "_id");
+
+        return hospital;
+    } catch (e: any) {
+        return false;
+    }
+}

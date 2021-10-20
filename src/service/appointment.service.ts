@@ -14,13 +14,56 @@ export async function findPatientAppointments(id: string) {
                 path: "doctor",
                 model: Doctor,
                 populate: { path: "profession", model: Profession },
-            }).populate({
+            })
+            .populate({
                 path: "doctor",
                 model: Doctor,
                 populate: { path: "hospital", model: Hospital },
             })
             .populate({ path: "hospital", model: Hospital });
         return patient;
+    } catch (e: any) {
+        return false;
+    }
+}
+
+export async function appointmentExists(date: Date, doctorId: string) {
+    try {
+        const appointment = await Appointment.find(
+            { date, doctor: doctorId },
+            "_id"
+        );
+        return appointment;
+    } catch (e: any) {
+        return false;
+    }
+}
+
+export async function validTime(date: Date) {
+    const minutes = date.getUTCMinutes();
+    const hours = date.getUTCHours();
+    return hours < 17 && hours >= 9 && (minutes === 0 || minutes === 30);
+}
+
+export async function addAppointment(body: any) {
+    const hospital = body.hospital;
+    const patient = body.patient;
+    const date = new Date(body.date);
+    const doctor = body.doctor;
+    const reason = body.reason;
+
+    const object = [
+        {
+            hospital,
+            patient,
+            date,
+            doctor,
+            reason,
+        },
+    ];
+    try {
+        Appointment.insertMany(object);
+        return true;
     } catch (e: any) {
         return false;
     }
