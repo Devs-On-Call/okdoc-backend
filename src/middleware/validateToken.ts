@@ -30,7 +30,7 @@ const validateToken =
                 message: "Invalid token",
             });
         if (requiresPatiendId) {
-            var patientId = get(req, "params.patientId");
+            let patientId = get(req, "params.patientId");
             if (!patientId) {
                 patientId = req.body.patient;
             }

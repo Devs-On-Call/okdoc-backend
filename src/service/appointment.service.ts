@@ -30,7 +30,7 @@ export async function findPatientAppointments(id: string) {
 export async function appointmentExists(date: Date, doctorId: string) {
     try {
         const appointment = await Appointment.find(
-            { date: date, doctor: doctorId },
+            { date, doctor: doctorId },
             "_id"
         );
         return appointment;
@@ -42,7 +42,7 @@ export async function appointmentExists(date: Date, doctorId: string) {
 export async function validTime(date: Date) {
     const minutes = date.getUTCMinutes();
     const hours = date.getUTCHours();
-    return hours < 17 && hours >= 9 && (minutes == 0 || minutes == 30);
+    return hours < 17 && hours >= 9 && (minutes === 0 || minutes === 30);
 }
 
 export async function addAppointment(body: any) {
@@ -54,11 +54,11 @@ export async function addAppointment(body: any) {
 
     const object = [
         {
-            hospital: hospital,
-            patient: patient,
-            date: date,
-            doctor: doctor,
-            reason: reason,
+            hospital,
+            patient,
+            date,
+            doctor,
+            reason,
         },
     ];
     try {
