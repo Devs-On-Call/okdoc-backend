@@ -33,7 +33,7 @@ export async function getPatientAppointmentsHandler(
 
 export async function postAppointmentHandler(req: Request, res: Response) {
     const doctor = await doctorExists(req.body.doctor);
-    if (!doctor || doctor.length == 0) {
+    if (!doctor || doctor.length === 0) {
         return res.status(400).send({
             success: false,
             message: "Doctor does not exist",
@@ -41,7 +41,7 @@ export async function postAppointmentHandler(req: Request, res: Response) {
     }
     const hospital = await hospitalExists(req.body.hospital);
 
-    if (!hospital || hospital.length == 0) {
+    if (!hospital || hospital.length === 0) {
         return res.status(400).send({
             success: false,
             message: "Hospital does not exist",
