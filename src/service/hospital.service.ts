@@ -8,7 +8,10 @@ export async function getHospitals(professionId: string) {
             "hospital"
         ).distinct("hospital");
 
-        const hospitals = await Hospital.find({ _id: { $in: ids } }, "name");
+        const hospitals = await Hospital.find(
+            { _id: { $in: ids } },
+            "name address"
+        );
 
         return hospitals;
     } catch (e: any) {
