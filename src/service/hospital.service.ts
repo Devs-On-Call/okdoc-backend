@@ -3,14 +3,16 @@ import Hospital from "../model/hospital.model";
 
 export async function getHospitals(professionId: string) {
     try {
+        const query = professionId == null ? {} : { profession: professionId };
+
         const ids = await Doctor.find(
-            { profession: professionId },
+            query,
             "hospital"
         ).distinct("hospital");
 
         const hospitals = await Hospital.find(
             { _id: { $in: ids } },
-            "name address"
+            "name address email"
         );
 
         return hospitals;

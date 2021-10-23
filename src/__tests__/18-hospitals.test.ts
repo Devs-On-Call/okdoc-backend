@@ -23,6 +23,27 @@ describe("/api/hospitals", () => {
                 res.body.should.have.property("message");
                 res.body.message.should.equal("Success");
                 res.body.should.have.property("data");
+                res.body.data[0].should.have.property("name");
+                res.body.data[0].should.have.property("address");
+                res.body.data[0].should.have.property("email");
+                done();
+            });
+    });
+
+    it("should return all hospitals", function (done) {
+        chai.request(app)
+            .get("/api/hospitals")
+            .set("Authorization", "Bearer " + token)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.have.property("success");
+                res.body.success.should.equal(true);
+                res.body.should.have.property("message");
+                res.body.message.should.equal("Success");
+                res.body.should.have.property("data");
+                res.body.data[0].should.have.property("name");
+                res.body.data[0].should.have.property("address");
+                res.body.data[0].should.have.property("email");
                 done();
             });
     });

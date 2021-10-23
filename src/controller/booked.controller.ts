@@ -4,7 +4,7 @@ import { getBooked } from "../service/booked.service";
 
 export async function getBookedHandler(req: Request, res: Response) {
     const doctorIdstr = req.query.doctorId as string;
-    const doctorId = new mongoose.Types.ObjectId(doctorIdstr)
+    const doctorId = new mongoose.Types.ObjectId(doctorIdstr);
 
     const booked = await getBooked(doctorId);
 

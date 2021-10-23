@@ -4,6 +4,7 @@ export interface HospitalDocument extends mongoose.Document {
     name: string,
     address: string,
     phoneNumber: string,
+    email: string,
 }
 
 const HospitalSchema = new mongoose.Schema(
@@ -11,6 +12,7 @@ const HospitalSchema = new mongoose.Schema(
         name: { type: String, required: true },
         address: { type: String, required: true },
         phoneNumber: { type: String },
+        email: { type: String },
     }
 );
 
