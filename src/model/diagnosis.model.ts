@@ -3,7 +3,8 @@ import mongoose, { ObjectId } from "mongoose";
 export interface DiagnosisDocument extends mongoose.Document {
 
     date: Date,
-    diagnosis: string,
+    name: string,
+    details: string,
     patient: ObjectId,
     doctor: ObjectId,
 }
@@ -11,7 +12,8 @@ export interface DiagnosisDocument extends mongoose.Document {
 const DiagnosisSchema = new mongoose.Schema(
     {
         date: { type: Date, required: true },
-        diagnosis: { type: String },
+        name: { type: String, required: true },
+        details: { type: String, required: true },
         patient: { type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
         doctor: { type: mongoose.Schema.Types.ObjectId, ref: "Doctor", required: true },
     });

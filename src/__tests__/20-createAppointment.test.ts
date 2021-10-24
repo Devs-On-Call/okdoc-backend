@@ -166,7 +166,6 @@ describe("/api/appointments", () => {
     });
 
     after(async function () {
-        console.log("in");
         try {
             await Appointment.deleteOne({
                 reason: "for test only",
